@@ -1,6 +1,19 @@
 # KONEPS_sionlab
 
-나라장터(KONEPS/G2B) 데이터를 MCP(Model Context Protocol)로 조회하는 Claude Code 기반 워크스페이스.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![validate](https://github.com/OWNER/KONEPS_sionlab/actions/workflows/validate.yml/badge.svg)](https://github.com/OWNER/KONEPS_sionlab/actions/workflows/validate.yml)
+[![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-6B4FBB)](https://modelcontextprotocol.io)
+
+나라장터(KONEPS/G2B) 공공 조달 데이터를 **MCP(Model Context Protocol) 경유**로 조회하는 Claude Code / Claude Desktop 공용 워크스페이스.
+
+> **English summary** · Query Korean government procurement data (KONEPS/G2B) via MCP — works with both Claude Code (with agent team) and Claude Desktop (tool-only mode). Public MCP servers are fetched on-demand by `uvx`. API keys live in a local `.env` and are never committed.
+
+## ✨ Highlights
+- 🔐 **0 API keys in `.mcp.json`** — single source `.env` via wrapper script
+- 🖥️ **Dual client support** — Claude Code (full agent workflow) + Claude Desktop (tool-only)
+- 🤖 **Agent team included** — orchestrator / mcp-operator / data-modeler / verifier / docs-writer
+- 📦 **Reproducible** — `uvx` on-demand, project-scope config, no global pollution
+- 🇰🇷 **Korean first** docs with English summaries
 
 ## 사전 요구사항
 - `uvx` 0.10 이상 (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
@@ -30,7 +43,18 @@ claude
 
 자세한 tool 목록은 `docs/mcp-tools.md` 참조.
 
-## 에이전트 팀
+## Claude Desktop 에서 쓰기 (MCP tool 만)
+Claude Desktop 앱 사용자는 서브에이전트 없이 MCP tool 2종만 붙여 쓸 수 있습니다.
+
+```bash
+bash scripts/setup-claude-desktop.sh
+```
+
+OS 자동 감지 → 절대경로 치환 → `claude_desktop_config.json` 생성/백업. 이후 Claude Desktop 재시작.
+
+세부 절차(수동 설정, WSL, 트러블슈팅): [`docs/claude-desktop-setup.md`](./docs/claude-desktop-setup.md)
+
+## 에이전트 팀 (Claude Code 전용)
 `.claude/agents/` 에 5개 에이전트 정의:
 - `orchestrator` — 요청 라우팅
 - `mcp-operator` — MCP tool 실행
@@ -48,7 +72,10 @@ claude
 ├── .env                # API 키 (git 제외)
 ├── data/raw/           # MCP 원시 응답 캐시
 ├── db/                 # (2단계) SQLite 스키마
-└── docs/               # 스키마/tool/런북
+├── scripts/
+│   ├── run-mcp.sh              # Claude Code/Desktop 공용 MCP 기동 래퍼
+│   └── setup-claude-desktop.sh # Desktop 설정 자동 생성
+└── docs/               # 스키마/tool/런북 + Desktop 설치 가이드
 ```
 
 ## 트러블슈팅
@@ -63,3 +90,14 @@ claude
 - **1단계 (현재)** — 공개 MCP 2개 안정화
 - **2단계** — JSON→SQLite 로더 + 스키마 정규화
 - **3단계** — 자체 MCP(sionlab-mcp): 비즈니스 로직 + 자사 DB 조인
+
+## 기여
+이슈/PR 환영합니다. 절차: [CONTRIBUTING.md](./CONTRIBUTING.md) · 행동 강령: [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) · 보안 제보: [SECURITY.md](./SECURITY.md) · 변경 이력: [CHANGELOG.md](./CHANGELOG.md)
+
+## 라이선스
+[MIT](./LICENSE). 본 저장소는 data.go.kr 공공 API 클라이언트 래퍼이며, 상류 MCP 서버(`nara-mcp-server`, `data-go-mcp.pps-narajangteo`)의 라이선스는 각 프로젝트 참조.
+
+## 크레딧
+- [Datajang/narajangteo_mcp_server](https://github.com/Datajang/narajangteo_mcp_server) — 키워드 검색, RFP 추출
+- [Koomook/data-go-mcp-servers](https://github.com/Koomook/data-go-mcp-servers) — 조달청 원시 데이터
+- [공공데이터포털](https://www.data.go.kr/) — 나라장터 입찰공고정보서비스 API 제공

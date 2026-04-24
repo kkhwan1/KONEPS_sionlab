@@ -1,0 +1,50 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JSON 문법 검증 (.mcp.json + 설정 템플릿)
+        run: |
+          python3 -m json.tool < .mcp.json > /dev/null
+          python3 -m json.tool < docs/claude-desktop-config.template.json > /dev/null
+
+      - name: shell 스크립트 문법
+        run: |
+          for f in scripts/*.sh; do
+            bash -n "$f"
+          done
+
+      - name: shellcheck
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq shellcheck
+          shellcheck -S warning scripts/*.sh || true
+
+      - name: API 키 누출 점검
+        run: |
+          # .env 추적 여부
+          if git ls-files | grep -Fx '.env'; then
+            echo "⚠️ .env 가 추적되고 있습니다" && exit 1
+          fi
+          # 실제 키처럼 생긴 긴 base64 패턴이 커밋 파일에 있는지
+          # (placeholder "YOUR_..." 는 제외)
+          if grep -rE 'NARA_API_KEY=[A-Za-z0-9+/=]{40,}' --include='*.json' --include='*.md' --include='*.sh' --include='*.example' . 2>/dev/null \
+             | grep -v 'YOUR_DECODED_SERVICE_KEY_HERE' ; then
+            echo "⚠️ 실제 키로 보이는 패턴 발견" && exit 1
+          fi
+          echo "OK"
+
+      - name: 필수 문서 존재 확인
+        run: |
+          for f in LICENSE README.md CLAUDE.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md CHANGELOG.md .env.example; do
+            test -f "$f" || { echo "missing: $f"; exit 1; }
+          done
+          echo "OK"

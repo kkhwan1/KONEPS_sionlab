@@ -14,6 +14,10 @@
 
 set -euo pipefail
 
+# Claude Desktop(Windows)이 wsl.exe 경유로 호출 시 non-interactive/non-login shell 이라
+# ~/.bashrc·~/.profile 의 PATH 수정이 적용되지 않음. uvx 표준 설치 위치를 명시 보강.
+export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:/usr/local/bin:${PATH:-/usr/bin:/bin}"
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 ENV_FILE="${PROJECT_ROOT}/.env"
@@ -30,6 +34,20 @@ source "${ENV_FILE}"
 set +a
 
 : "${NARA_API_KEY:?.env 에 NARA_API_KEY 가 정의되어야 합니다}"
+
+# placeholder 감지 — .env.example 을 복사만 하고 값 미치환 시 조기 실패
+if [[ "${NARA_API_KEY}" == "YOUR_DECODED_SERVICE_KEY_HERE" ]]; then
+  echo "[run-mcp] ERROR: .env 의 NARA_API_KEY 가 placeholder 상태입니다. 실제 키로 치환하세요." >&2
+  exit 1
+fi
+
+# .env 권한 경고 (600 권장). WSL/Linux 한정.
+if [[ -r "${ENV_FILE}" ]] && command -v stat >/dev/null 2>&1; then
+  PERM="$(stat -c '%a' "${ENV_FILE}" 2>/dev/null || stat -f '%A' "${ENV_FILE}" 2>/dev/null || echo "")"
+  if [[ -n "${PERM}" && "${PERM}" != "600" && "${PERM}" != "400" ]]; then
+    echo "[run-mcp] WARN: ${ENV_FILE} 권한이 ${PERM} 입니다. 'chmod 600 .env' 권장." >&2
+  fi
+fi
 
 TARGET="${1:-}"
 case "${TARGET}" in
