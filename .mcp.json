@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "nara-jangteo": {
+      "command": "uvx",
+      "args": ["--python", "3.11", "--from", "nara-mcp-server", "nara-server"],
+      "env": {
+        "NARA_API_KEY": "${NARA_API_KEY}",
+        "NARA_PRESPEC_API_KEY": "${NARA_PRESPEC_API_KEY}",
+        "UV_LINK_MODE": "copy"
+      }
+    },
+    "data-go-mcp.pps-narajangteo": {
+      "command": "uvx",
+      "args": ["data-go-mcp.pps-narajangteo@latest"],
+      "env": {
+        "API_KEY": "${NARA_API_KEY}"
+      }
+    }
+  }
+}

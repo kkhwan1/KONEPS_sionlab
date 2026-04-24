@@ -1,0 +1,51 @@
+# 환경변수 / 비밀
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# uv / uvx
+.uv-cache/
+.venv*/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# 로그 / 임시 / DB
+*.log
+tmp/
+temp/
+.cache/
+*.db
+*.sqlite
+*.sqlite3
+data/cache/
+
+# 빌드 결과
+dist/
+build/
+*.egg-info/
+
+# Claude 로컬 (팀 구조는 커밋, 세션/로컬 상태는 제외)
+.claude/settings.local.json
+.claude/.session/
