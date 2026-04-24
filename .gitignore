@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# MCP 설정 (실제 API 키 포함. 템플릿은 .mcp.json.example 커밋)
+.mcp.json
+
 # Python
 __pycache__/
 *.py[cod]

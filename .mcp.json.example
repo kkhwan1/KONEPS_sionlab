@@ -4,8 +4,8 @@
       "command": "uvx",
       "args": ["--python", "3.11", "--from", "nara-mcp-server", "nara-server"],
       "env": {
-        "NARA_API_KEY": "${NARA_API_KEY}",
-        "NARA_PRESPEC_API_KEY": "${NARA_PRESPEC_API_KEY}",
+        "NARA_API_KEY": "YOUR_DECODED_SERVICE_KEY_HERE",
+        "NARA_PRESPEC_API_KEY": "YOUR_DECODED_SERVICE_KEY_HERE",
         "UV_LINK_MODE": "copy"
       }
     },
@@ -13,7 +13,7 @@
       "command": "uvx",
       "args": ["data-go-mcp.pps-narajangteo@latest"],
       "env": {
-        "API_KEY": "${NARA_API_KEY}"
+        "API_KEY": "YOUR_DECODED_SERVICE_KEY_HERE"
       }
     }
   }
