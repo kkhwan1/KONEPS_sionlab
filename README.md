@@ -10,6 +10,8 @@
 
 > **English** · Query Korean government procurement data via MCP. Works with both Claude Code and Claude Desktop. API keys stay in a local `.env`; the `.mcp.json` is key-free.
 
+**작성자 · Author**: KKHWAN · ✉ [lee.kkhwan@gmail.com](mailto:lee.kkhwan@gmail.com)
+
 ---
 
 ## 📑 목차
