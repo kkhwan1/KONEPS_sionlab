@@ -3,8 +3,7 @@
 .env.local
 .env.*.local
 
-# MCP 설정 (실제 API 키 포함. 템플릿은 .mcp.json.example 커밋)
-.mcp.json
+# MCP 설정은 키 0개 (.env 에서 로드하는 래퍼 스크립트 경유). 커밋 대상.
 
 # Python
 __pycache__/
@@ -42,7 +41,9 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
-data/cache/
+
+# MCP 원시 응답 캐시 (대용량, 변동성). 규칙 파일만 유지.
+data/raw/*.json
 
 # 빌드 결과
 dist/

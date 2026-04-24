@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "nara-jangteo": {
+      "command": "bash",
+      "args": ["./scripts/run-mcp.sh", "nara-jangteo"]
+    },
+    "data-go-mcp.pps-narajangteo": {
+      "command": "bash",
+      "args": ["./scripts/run-mcp.sh", "data-go-mcp"]
+    }
+  }
+}
