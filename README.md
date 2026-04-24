@@ -1,7 +1,7 @@
 # KONEPS_sionlab
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![validate](https://github.com/OWNER/KONEPS_sionlab/actions/workflows/validate.yml/badge.svg)](https://github.com/OWNER/KONEPS_sionlab/actions/workflows/validate.yml)
+[![validate](https://github.com/kkhwan1/KONEPS_sionlab/actions/workflows/validate.yml/badge.svg)](https://github.com/kkhwan1/KONEPS_sionlab/actions/workflows/validate.yml)
 [![MCP](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-6B4FBB)](https://modelcontextprotocol.io)
 
 나라장터(KONEPS/G2B) 공공 조달 데이터를 **MCP(Model Context Protocol) 경유**로 조회하는 Claude Code / Claude Desktop 공용 워크스페이스.

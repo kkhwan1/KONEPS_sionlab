@@ -40,5 +40,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/OWNER/KONEPS_sionlab/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/OWNER/KONEPS_sionlab/releases/tag/v0.1.0
+[Unreleased]: https://github.com/kkhwan1/KONEPS_sionlab/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/kkhwan1/KONEPS_sionlab/releases/tag/v0.1.0
