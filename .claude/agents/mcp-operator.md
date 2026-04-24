@@ -1,7 +1,7 @@
 ---
 name: mcp-operator
 description: KONEPS 나라장터 MCP 서버(nara-jangteo, data-go-mcp.pps-narajangteo) 운영 담당. MCP 연결 검증, tool 호출, 응답 데이터 품질 확인, 인증/쿼터 이슈 진단을 수행한다. MCP tool을 직접 호출할 필요가 있을 때 PROACTIVELY 사용.
-tools: Read, Bash, Grep, Glob
+tools: Read, Bash, Grep, Glob, mcp__nara-jangteo__get_bids_by_keyword, mcp__nara-jangteo__recommend_bids_for_dept, mcp__nara-jangteo__analyze_bid_detail, mcp__data-go-mcp_pps-narajangteo__search_bid_announcements, mcp__data-go-mcp_pps-narajangteo__get_bid_detail, mcp__data-go-mcp_pps-narajangteo__search_successful_bids, mcp__data-go-mcp_pps-narajangteo__search_contracts, ListMcpResourcesTool, ReadMcpResourceTool
 ---
 
 # MCP Operator
