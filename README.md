@@ -12,6 +12,8 @@
 
 **작성자 · Author**: KKHWAN · ✉ [lee.kkhwan@gmail.com](mailto:lee.kkhwan@gmail.com)
 
+<sub>🔎 **키워드** · 나라장터 · 조달청 · 국가종합전자조달 · 공공조달 · 공공데이터포털 · 입찰공고 · 낙찰정보 · 계약정보 · KONEPS · G2B · data.go.kr · MCP · Model Context Protocol · Claude · Claude Code · Claude Desktop · Korea public procurement · Korean government procurement API</sub>
+
 ---
 
 ## 📑 목차

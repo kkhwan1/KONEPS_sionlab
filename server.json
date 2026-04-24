@@ -1,0 +1,78 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server.json",
+  "name": "KONEPS_sionlab",
+  "displayName": "나라장터 MCP (KONEPS)",
+  "description": "한국 나라장터(KONEPS/G2B) 공공조달 데이터를 Claude로 자연어 질의. 입찰공고, 낙찰정보, 계약정보, RFP 파일 추출 지원.",
+  "descriptionEn": "Query Korean government procurement (KONEPS/G2B) data with Claude via MCP.",
+  "version": "0.1.0",
+  "author": {
+    "name": "KKHWAN",
+    "email": "lee.kkhwan@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kkhwan1/KONEPS_sionlab",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kkhwan1/KONEPS_sionlab.git"
+  },
+  "keywords": [
+    "korea",
+    "korean-government",
+    "procurement",
+    "public-procurement",
+    "koneps",
+    "narajangteo",
+    "g2b",
+    "data-go-kr",
+    "public-data",
+    "mcp",
+    "claude",
+    "claude-code",
+    "claude-desktop"
+  ],
+  "servers": [
+    {
+      "name": "nara-jangteo",
+      "command": "bash",
+      "args": ["scripts/run-mcp.sh", "nara-jangteo"],
+      "env": {
+        "NARA_API_KEY": "${NARA_API_KEY}",
+        "NARA_PRESPEC_API_KEY": "${NARA_PRESPEC_API_KEY}"
+      }
+    },
+    {
+      "name": "data-go-mcp.pps-narajangteo",
+      "command": "bash",
+      "args": ["scripts/run-mcp.sh", "data-go-mcp"],
+      "env": {
+        "NARA_API_KEY": "${NARA_API_KEY}"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "get_bids_by_keyword",
+      "description": "키워드로 입찰공고 + 사전규격 검색 (최근 N일)"
+    },
+    {
+      "name": "recommend_bids_for_dept",
+      "description": "부서 프로필 기반 입찰공고 Top 추천"
+    },
+    {
+      "name": "analyze_bid_detail",
+      "description": "RFP 파일(HWP/PDF/DOCX) 텍스트 추출 및 분석"
+    },
+    {
+      "name": "search_bid_announcements",
+      "description": "data.go.kr 원시 입찰공고 검색"
+    },
+    {
+      "name": "search_successful_bids",
+      "description": "낙찰정보 조회 (용역/물품/공사 등)"
+    },
+    {
+      "name": "search_contracts",
+      "description": "계약정보 조회"
+    }
+  ]
+}
